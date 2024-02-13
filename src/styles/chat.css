@@ -1,0 +1,60 @@
+.bubble {
+  position: relative;
+}
+
+.bubble .bubble-action {
+  opacity: 0;
+  transition: opacity 0.2s linear;
+}
+.bubble:hover .bubble-action {
+  opacity: 1;
+}
+
+.bubble-content {
+  padding: 4px 10px;
+  border-radius: 14px;
+  min-width: 56px;
+  max-width: 100%;
+  position: relative;
+}
+.bubble:not([data-has-name='true']):not([data-is-first='true']) .bubble-name {
+  display: none;
+}
+
+.bubble-tail {
+  position: absolute;
+  display: none;
+}
+.bubble[data-is-last='true']:not([dir='right']) .bubble-tail {
+  display: block;
+  bottom: -1px;
+  left: -8px;
+}
+.bubble[data-is-last='true'][dir='right'] .bubble-tail {
+  display: block;
+  bottom: -1px;
+  right: -8px;
+  transform: rotateX(180);
+}
+
+.bubble[data-is-first='true']:not([dir='right']) .bubble-content {
+  border-end-start-radius: 6px;
+}
+.bubble[data-is-in='true']:not([dir='right']) .bubble-content {
+  border-start-start-radius: 6px;
+  border-end-start-radius: 6px;
+}
+.bubble[data-is-last='true']:not([dir='right']) .bubble-content {
+  border-start-start-radius: 6px;
+}
+
+.bubble[data-is-first='true'][dir='right'] .bubble-content {
+  border-bottom-right-radius: 6px;
+}
+.bubble[data-is-in='true'][dir='right'] .bubble-content {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.bubble[data-is-last='true'][dir='right'] .bubble-content {
+  border-top-right-radius: 6px;
+}

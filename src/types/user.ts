@@ -1,6 +1,3 @@
-export type TUser = {
-  id: string;
-  email: string;
-  name: string;
-  image: string;
-};
+import type { User } from 'next-auth';
+
+export type TUser = { _id?: string; lastActiveAt?: Date } & User;

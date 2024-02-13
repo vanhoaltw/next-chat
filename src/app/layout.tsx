@@ -1,11 +1,12 @@
 import '@/styles/globals.css';
 
 import { PropsWithChildren } from 'react';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 
-import { Footer } from '@/components/footer';
-import { Navbar } from '@/components/navbar/navbar';
-import { ThemeProvider } from '@/components/theme-provider';
+import RootProvider from './provider';
+
+import { getNextAuthServerSession } from '@/auth';
+import { ThemeProvider } from '@/components/ThemeProvider';
 import { siteConfig } from '@/lib/constant';
 import { fonts } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
@@ -44,14 +45,27 @@ export const metadata: Metadata = {
   },
 };
 
-const RootLayout = ({ children }: PropsWithChildren) => {
+export const viewport: Viewport = {
+  initialScale: 1,
+  maximumScale: 1,
+  minimumScale: 1,
+  themeColor: [
+    { color: '#f8f8f8', media: '(prefers-color-scheme: light)' },
+    { color: '#000', media: '(prefers-color-scheme: dark)' },
+  ],
+  userScalable: false,
+  viewportFit: 'cover',
+  width: 'device-width',
+};
+
+const RootLayout = async ({ children }: PropsWithChildren) => {
+  const session = await getNextAuthServerSession();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn('min-h-screen font-sans', fonts)}>
         <ThemeProvider attribute="class">
-          <Navbar />
-          {children}
-          <Footer />
+          <RootProvider session={session}>{children}</RootProvider>
         </ThemeProvider>
       </body>
     </html>
