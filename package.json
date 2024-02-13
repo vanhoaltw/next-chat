@@ -14,10 +14,7 @@
     "typecheck": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "e2e": "playwright test",
-    "e2e:ui": "playwright test --ui",
-    "postbuild": "next-sitemap --config next-sitemap.config.js",
-    "prepare": "husky install"
+    "postbuild": "next-sitemap --config next-sitemap.config.js"
   },
   "husky": {
     "hooks": {
